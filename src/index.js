@@ -1,8 +1,7 @@
 module.exports = function zeros(expression) {
   //факториал-функция для нахождения факториала
 function factorial (n,x) {
-  if(n == 0){ return 1; }//может быть подправить  эту строчку и следующюю на if(n<=0) {return 1;};
-  if(n < 0){ return 1; }
+  if(n <= 0){ return 1; };
   return n * factorial(n-x,x);
 }
 var base=1;
