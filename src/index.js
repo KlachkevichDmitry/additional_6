@@ -1,20 +1,40 @@
+
 module.exports = function zeros(expression) {
-  //факториал-функция для нахождения факториала
-function factorial (n,x) {
-  if(n <= 0){ return 1;};
-  return n * factorial(n-x,x);
+
+var five=0;
+var two=0;
+	
+function zeros (a) {
+	for (var j=0; j<a.length; j++) {
+		while(a[j]>1) {
+		if (a[j]%5==0) {
+			five++;
+			a[j]=a[j]/5;
+		}else break;}
+	}
+	
+	for (var t=0; t<a.length; t++) {
+		while (a[t]>1) {
+			if (a[t]%2==0) {
+				two++;
+				a[t]=a[t]/2;
+		}else break;}
+	}
+				
 }
-var base=1;
-//необходимо найти как разделять строку
-str=expression.split("*");
+
+var str=expression.split("*");
+
 for (var i=0; i<str.length; i++) {
-var countForFirsrt=str[i].match(/!+/);//переменная определяется правильно, c двумя и одним восклицательным знаком
-var n=Number(str[i].replace(/!/g,""));//переменная определяется правильно, выводит правильные цифры
-base=base*(factorial(n,(countForFirsrt[0].length)));
+	var countForFirsrt=str[i].match(/!+/)[0].length;
+	var num=Number(str[i].replace(/!/g,""));
+	var arr=[];
+	
+	for (var x=num; x>0; x=x-countForFirsrt) {
+	arr.push(x);}
+	
+	zeros(arr);
 }
-//найти сколько нулей в конце числа-CДЕЛАНО
-base=""+base;
-base=base.split("").reverse().join("");
-var count=base.match(/0+/);
-return count[0].length;
+
+return five>two?two:five;
 }
